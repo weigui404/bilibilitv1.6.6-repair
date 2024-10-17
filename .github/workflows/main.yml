@@ -32,7 +32,7 @@ jobs:
 
     # 将构建产物保存为工件，方便下载
     - name: 保存构建产物
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: app-build
         # 修改路径，指向生成的 mybv.apk 文件
@@ -45,7 +45,7 @@ jobs:
     
     steps:
     - name: 下载构建产物
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: app-build
 
