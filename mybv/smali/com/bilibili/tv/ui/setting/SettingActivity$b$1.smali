@@ -1,4 +1,4 @@
-.class final Lcom/bilibili/tv/ui/setting/SettingActivity$b$ViewOnClickListenerC0032b;
+.class Lcom/bilibili/tv/ui/setting/SettingActivity$b$1;
 .super Ljava/lang/Object;
 .source "SettingActivity.java"
 
@@ -7,20 +7,20 @@
 
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingClass;
-    value = Lcom/bilibili/tv/ui/setting/SettingActivity$b;
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lcom/bilibili/tv/ui/setting/SettingActivity$b;->a(Landroid/support/v7/widget/RecyclerView$v;I)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
-    accessFlags = 0x10
-    name = "ViewOnClickListenerC0032b"
+    accessFlags = 0x0
+    name = null
 .end annotation
 
 
 # instance fields
-.field final b:I
-
 .field final synthetic this$1:Lcom/bilibili/tv/ui/setting/SettingActivity$b;
+
+.field final synthetic val$i:I
 
 
 # direct methods
@@ -28,15 +28,13 @@
     .locals 0
 
     .prologue
-    .line 349
-    iput-object p1, p0, Lcom/bilibili/tv/ui/setting/SettingActivity$b$ViewOnClickListenerC0032b;->this$1:Lcom/bilibili/tv/ui/setting/SettingActivity$b;
+    .line 262
+    iput-object p1, p0, Lcom/bilibili/tv/ui/setting/SettingActivity$b$1;->this$1:Lcom/bilibili/tv/ui/setting/SettingActivity$b;
+
+    iput p2, p0, Lcom/bilibili/tv/ui/setting/SettingActivity$b$1;->val$i:I
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 350
-    iput p2, p0, Lcom/bilibili/tv/ui/setting/SettingActivity$b$ViewOnClickListenerC0032b;->b:I
-
-    .line 351
     return-void
 .end method
 
@@ -48,52 +46,52 @@
     .prologue
     const/4 v4, 0x1
 
-    .line 355
-    iget v0, p0, Lcom/bilibili/tv/ui/setting/SettingActivity$b$ViewOnClickListenerC0032b;->b:I
+    .line 265
+    iget v0, p0, Lcom/bilibili/tv/ui/setting/SettingActivity$b$1;->val$i:I
 
     const/4 v1, 0x4
 
     if-eq v0, v1, :cond_7
 
-    .line 381
+    .line 291
     :cond_6
     :goto_6
     return-void
 
-    .line 358
+    .line 268
     :cond_7
     const-string v0, "v"
 
     invoke-static {p1, v0}, Lbl/bbi;->a(Ljava/lang/Object;Ljava/lang/String;)V
 
-    .line 359
+    .line 269
     invoke-virtual {p1}, Landroid/view/View;->getContext()Landroid/content/Context;
 
     move-result-object v0
 
-    .line 360
+    .line 270
     const-string v1, "v.context"
 
     invoke-static {v0, v1}, Lbl/bbi;->a(Ljava/lang/Object;Ljava/lang/String;)V
 
-    .line 361
+    .line 271
     invoke-static {v0}, Lbl/adl;->a(Landroid/content/Context;)Landroid/app/Activity;
 
     move-result-object v0
 
-    .line 362
-    iget-object v1, p0, Lcom/bilibili/tv/ui/setting/SettingActivity$b$ViewOnClickListenerC0032b;->this$1:Lcom/bilibili/tv/ui/setting/SettingActivity$b;
+    .line 272
+    iget-object v1, p0, Lcom/bilibili/tv/ui/setting/SettingActivity$b$1;->this$1:Lcom/bilibili/tv/ui/setting/SettingActivity$b;
 
     # operator++ for: Lcom/bilibili/tv/ui/setting/SettingActivity$b;->e:I
-    invoke-static {v1}, Lcom/bilibili/tv/ui/setting/SettingActivity$b;->access$308(Lcom/bilibili/tv/ui/setting/SettingActivity$b;)I
+    invoke-static {v1}, Lcom/bilibili/tv/ui/setting/SettingActivity$b;->access$008(Lcom/bilibili/tv/ui/setting/SettingActivity$b;)I
 
-    .line 363
+    .line 273
     if-eqz v0, :cond_6
 
-    iget-object v1, p0, Lcom/bilibili/tv/ui/setting/SettingActivity$b$ViewOnClickListenerC0032b;->this$1:Lcom/bilibili/tv/ui/setting/SettingActivity$b;
+    iget-object v1, p0, Lcom/bilibili/tv/ui/setting/SettingActivity$b$1;->this$1:Lcom/bilibili/tv/ui/setting/SettingActivity$b;
 
     # getter for: Lcom/bilibili/tv/ui/setting/SettingActivity$b;->e:I
-    invoke-static {v1}, Lcom/bilibili/tv/ui/setting/SettingActivity$b;->access$300(Lcom/bilibili/tv/ui/setting/SettingActivity$b;)I
+    invoke-static {v1}, Lcom/bilibili/tv/ui/setting/SettingActivity$b;->access$000(Lcom/bilibili/tv/ui/setting/SettingActivity$b;)I
 
     move-result v1
 
@@ -101,12 +99,12 @@
 
     if-le v1, v2, :cond_6
 
-    .line 366
+    .line 276
     new-instance v1, Lbl/agb$a;
 
     invoke-direct {v1, v0}, Lbl/agb$a;-><init>(Landroid/app/Activity;)V
 
-    .line 367
+    .line 277
     invoke-virtual {v1, v4}, Lbl/agb$a;->a(I)Lbl/agb$a;
 
     move-result-object v2
@@ -127,9 +125,9 @@
 
     move-result-object v3
 
-    new-instance v4, Lcom/bilibili/tv/ui/setting/SettingActivity$b$ViewOnClickListenerC0032b$2;
+    new-instance v4, Lcom/bilibili/tv/ui/setting/SettingActivity$b$1$2;
 
-    invoke-direct {v4, p0, v0}, Lcom/bilibili/tv/ui/setting/SettingActivity$b$ViewOnClickListenerC0032b$2;-><init>(Lcom/bilibili/tv/ui/setting/SettingActivity$b$ViewOnClickListenerC0032b;Landroid/app/Activity;)V
+    invoke-direct {v4, p0, v0}, Lcom/bilibili/tv/ui/setting/SettingActivity$b$1$2;-><init>(Lcom/bilibili/tv/ui/setting/SettingActivity$b$1;Landroid/app/Activity;)V
 
     invoke-virtual {v2, v3, v4}, Lbl/agb$a;->b(Ljava/lang/String;Lbl/agb$b;)Lbl/agb$a;
 
@@ -137,18 +135,18 @@
 
     const v3, 0x7f0c0076
 
-    .line 373
+    .line 283
     invoke-virtual {v0, v3}, Landroid/app/Activity;->getString(I)Ljava/lang/String;
 
     move-result-object v3
 
-    new-instance v4, Lcom/bilibili/tv/ui/setting/SettingActivity$b$ViewOnClickListenerC0032b$1;
+    new-instance v4, Lcom/bilibili/tv/ui/setting/SettingActivity$b$1$1;
 
-    invoke-direct {v4, p0, v0}, Lcom/bilibili/tv/ui/setting/SettingActivity$b$ViewOnClickListenerC0032b$1;-><init>(Lcom/bilibili/tv/ui/setting/SettingActivity$b$ViewOnClickListenerC0032b;Landroid/app/Activity;)V
+    invoke-direct {v4, p0, v0}, Lcom/bilibili/tv/ui/setting/SettingActivity$b$1$1;-><init>(Lcom/bilibili/tv/ui/setting/SettingActivity$b$1;Landroid/app/Activity;)V
 
     invoke-virtual {v2, v3, v4}, Lbl/agb$a;->a(Ljava/lang/String;Lbl/agb$b;)Lbl/agb$a;
 
-    .line 380
+    .line 290
     invoke-virtual {v1}, Lbl/agb$a;->a()Lbl/agb;
 
     move-result-object v0

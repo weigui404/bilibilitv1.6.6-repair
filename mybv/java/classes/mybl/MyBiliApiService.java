@@ -45,4 +45,7 @@ public interface MyBiliApiService {
 
     @GET(a = "/x/dm/filter/user")
     vp<GeneralResponse<JSONObject>> getDanmuFilter();
+
+    @GET(a = "/x/space/bangumi/follow/list")
+    vp<GeneralResponse<JSONObject>> getFollowBangumi(@Query(a = "access_key") String access_key, @Query(a = "type") int type, @Query(a = "pn") int page, @Query(a = "ps") int page_size, @Query(a = "vmid") long vmid);
 }
