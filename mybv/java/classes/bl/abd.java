@@ -4,9 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
-import org.json.*;
+import com.alibaba.fastjson.*;
 import java.util.*;
 import mybl.DanmakuClient;
+import com.bilibili.tv.player.widget.PlayerMenuRight;
 
 /* compiled from: BL */
 /* loaded from: classes.dex */
@@ -17,7 +18,7 @@ public class abd {
     private static int f;
     private static int g;
     private static int h;
-    private static int i = -1;
+    private static int danmaku_type = -1;
     private static float j;
     private static float k;
     private static int l;
@@ -111,28 +112,29 @@ public class abd {
     }
 
     public static void c(Context context, boolean z) {
-        int i2 = z ? 1 : 0;
-        a(context).a().edit().putInt("danmaku_text_show_type", i2).apply();
-        i = i2;
+        int type = z ? 0b11110010 : 0;
+        a(context).a().edit().putInt("danmaku_text_show_type", type).apply();
+        danmaku_type = type;
+        for(int i=0;i<10;i++)PlayerMenuRight.danmaku_valid_list[i]=((danmaku_type>>i)&1)>0;
     }
 
     public static boolean e(Context context) {
-        if (i == -1) {
-            i = a(context).a().getInt("danmaku_text_show_type", 2);
+        if (danmaku_type == -1) {
+            danmaku_type = a(context).a().getInt("danmaku_text_show_type", 0b11110010);
         }
-        return i>0;
+        return danmaku_type>0;
     }
 
-    public static void set_danmaku_type(Context context, int t) {
-        a(context).a().edit().putInt("danmaku_text_show_type", t).apply();
-        i = t;
+    public static void set_danmaku_type(Context context, int type) {
+        a(context).a().edit().putInt("danmaku_text_show_type", type).apply();
+        danmaku_type = type;
     }
 
     public static int get_danmaku_type(Context context) {
-        if (i == -1) {
-            i = a(context).a().getInt("danmaku_text_show_type", 2);
+        if (danmaku_type == -1) {
+            danmaku_type = a(context).a().getInt("danmaku_text_show_type", 0b11110010);
         }
-        return i;
+        return danmaku_type;
     }
 
     public static void a(Context context, float f2) {
@@ -223,7 +225,7 @@ public class abd {
 
     public static void set_skip_categories(Context context, Set<String> skip_categories) {
         try{
-            a(context).a().edit().putString("skip_categories", new JSONArray(skip_categories).toString()).apply();
+            a(context).a().edit().putString("skip_categories", JSON.toJSONString(skip_categories)).apply();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -233,12 +235,34 @@ public class abd {
     public static Set<String> get_skip_categories(Context context) {
         HashSet<String> h = new HashSet<String>();
         try{
-            JSONArray ja = new JSONArray(a(context).a().getString("skip_categories", ""));
-            for(int i=0;i<ja.length();i++)h.add(ja.optString(i));
+            JSONArray ja = (JSONArray)JSON.toJSON(a(context).a().getString("skip_categories", ""));
+            for(int i=0;i<ja.size();i++)h.add(ja.getString(i));
         }
         catch(Exception e){
             e.printStackTrace();
         }
         return h;
+    }
+
+    public static void set_personal_config(Context context, String key, Object value) {
+        try{
+            JSONObject config = get_personal_config(context);
+            config.put(key, value);
+            a(context).a().edit().putString("personal_config", config.toString()).apply();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static JSONObject get_personal_config(Context context) {
+        JSONObject config = null;
+        String default_config = "{\"filter_on\":false,\"progressbar_on\":false,\"fastquit_on\":false}";
+        try{
+            config = JSON.parseObject(a(context).a().getString("personal_config", default_config));
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return config;
     }
 }
