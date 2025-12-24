@@ -1,9 +1,9 @@
 .class public interface abstract Lbl/vu;
 .super Ljava/lang/Object;
-.source "BL"
+.source "vu.java"
 
 # interfaces
-.implements Lbl/bla;
+.implements Lretrofit2/Converter;
 
 
 # annotations
@@ -13,8 +13,9 @@
         "Ljava/lang/Object;",
         ">",
         "Ljava/lang/Object;",
-        "Lbl/bla<",
-        "Lbl/bia;",
+        "Lretrofit2/Converter",
+        "<",
+        "Lokhttp3/ResponseBody;",
         "TT;>;"
     }
 .end annotation

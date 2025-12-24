@@ -1,12 +1,12 @@
 {
-    "apkMd5":"18b1ca401b33de0fec3da1f2a3f7163a",
+    "apkMd5":"6efa80c69b16921f4c374f1307a50e83",
     "apkUrl":"https://github.com/qidian55/bilibilitv1.6.6-repair/raw/refs/heads/main/mybv.apk",
-    "fileSize":8210315,
+    "fileSize":8288234,
     "id":"",
-    "newFeature":"解码器设置持久化\n部分按键逻辑调整\n收藏功能优化\n尝试支持杜比全景声及无损音质",
+    "newFeature":"增加部分分区",
     "publishTime":0,
     "title":"New",
     "upgradeType":1,
     "versionCode":1606,
-    "versionName":"1.6.6.20250711"
+    "versionName":"1.6.6.20251121"
 }

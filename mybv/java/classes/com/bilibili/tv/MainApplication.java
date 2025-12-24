@@ -42,11 +42,11 @@ import com.umeng.analytics.BiliUmeng;
 
 import bl.kz;
 import bl.abd;
-import bl.afc;
 import java.io.*;
 import mybl.BiliFilter;
 import com.alibaba.fastjson.*;
 import com.bilibili.tv.player.widget.PlayerMenuRight;
+import com.bilibili.tv.ui.main.content.MainMyFragment;
 
 /* compiled from: BL */
 /* loaded from: classes.dex */
@@ -56,6 +56,7 @@ public class MainApplication extends Application {
     public avk a;
 
     public static JSONArray blacklist_uids=null;
+    public static JSONArray graylist_uids=null;
 
     public static MainApplication a() {
         return b;
@@ -105,18 +106,20 @@ public class MainApplication extends Application {
         for(int i=0;i<10;i++)PlayerMenuRight.danmaku_valid_list[i]=((danmaku_type>>i)&1)>0;
         BiliFilter.skip_categories=abd.get_skip_categories(this);
         JSONObject config=abd.get_personal_config(this);
-        BiliFilter.filter_on=config.getBoolean("filter_on");
-        BiliFilter.progressbar_on=config.getBoolean("progressbar_on");
-        BiliFilter.fastquit_on=config.getBoolean("fastquit_on");
+        BiliFilter.filter_on=config.getBooleanValue("filter_on");
+        BiliFilter.progressbar_on=config.getBooleanValue("progressbar_on");
+        BiliFilter.fastquit_on=config.getBooleanValue("fastquit_on");
         mybl.VideoViewParams.prefect_cdn=config.getString("prefect_cdn");
         bl.afm3.prefect_codec=config.getString("prefect_codec");
         bl.afm3.prefect_decoder=config.getString("prefect_decoder");
+        bl.afq.auto_update=config.getBooleanValue("auto_update");
         try{BiliFilter.updateConfig();}catch(Exception e){e.printStackTrace();}
         JSONArray myarea_map=config.getJSONArray("myarea_map");
-        if(myarea_map==null||myarea_map.size()!=afc.MyMap.length)abd.set_personal_config(this,"myarea_map",JSON.toJSON(afc.MyMap));
+        if(myarea_map==null||myarea_map.size()!=MainMyFragment.MyMap.length)abd.set_personal_config(this,"myarea_map",JSON.toJSON(MainMyFragment.MyMap));
         else{
-            for(int i=0;i<myarea_map.size();i++)afc.MyMap[i]=myarea_map.getIntValue(i);
+            for(int i=0;i<myarea_map.size();i++)MainMyFragment.MyMap[i]=myarea_map.getIntValue(i);
         }
+        bl.afq.AutoCheckUpdate();
 
         InputStream inputStream=null;
         try {
@@ -129,12 +132,16 @@ public class MainApplication extends Application {
             e.printStackTrace();
         }
         try {
-            blacklist_uids = JSON.parseObject(kz.c(inputStream)).getJSONArray("uids");
+            JSONObject j = JSON.parseObject(kz.c(inputStream));
+            blacklist_uids = j.getJSONArray("uids");
+            graylist_uids = j.getJSONArray("warning_uids");
             kz.a(inputStream);
         } catch (Exception e) {
             kz.a(inputStream);
             e.printStackTrace();
         }
+        System.setProperty("java.net.preferIPv6Addresses", "false");
+        System.setProperty("java.net.preferIPv4Stack", "true");
     }
 
     @Override // android.app.Application, android.content.ComponentCallbacks
@@ -165,7 +172,8 @@ public class MainApplication extends Application {
         BiliConfig.a(new BiliConfig.Delegate() { // from class: com.bilibili.tv.MainApplication.2
             @Override // com.bilibili.api.BiliConfig.Delegate
             public String getAppDefaultUA() {
-                return "Mozilla/5.0 BiliTV/1.6.6 (bbcallen@gmail.com)";
+                return System.getProperty("http.agent");
+                //return "Mozilla/5.0 BiliTV/1.6.6 (bbcallen@gmail.com)";
             }
 
             @Override // com.bilibili.api.BiliConfig.Delegate

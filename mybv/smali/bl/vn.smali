@@ -22,7 +22,7 @@
     .locals 0
 
     .prologue
-    .line 11
+    .line 13
     invoke-direct {p0}, Lbl/vm;-><init>()V
 
     return-void
@@ -41,7 +41,7 @@
     .end annotation
 
     .prologue
-    .line 44
+    .line 46
     new-instance v0, Ljava/lang/UnsupportedOperationException;
 
     invoke-direct {v0}, Ljava/lang/UnsupportedOperationException;-><init>()V
@@ -61,16 +61,16 @@
     .end annotation
 .end method
 
-.method public onResponse(Lbl/bkx;Lbl/blh;)V
+.method public onResponse(Lretrofit2/Call;Lretrofit2/Response;)V
     .locals 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Lbl/bkx",
+            "Lretrofit2/Call",
             "<",
             "Lcom/bilibili/okretro/GeneralResponse",
             "<TT;>;>;",
-            "Lbl/blh",
+            "Lretrofit2/Response",
             "<",
             "Lcom/bilibili/okretro/GeneralResponse",
             "<TT;>;>;)V"
@@ -78,20 +78,20 @@
     .end annotation
 
     .prologue
-    .line 23
+    .line 25
     invoke-virtual {p0}, Lbl/vn;->isCancel()Z
 
     move-result v0
 
     if-eqz v0, :cond_7
 
-    .line 41
+    .line 43
     :goto_6
     return-void
 
-    .line 26
+    .line 28
     :cond_7
-    invoke-virtual {p2}, Lbl/blh;->e()Z
+    invoke-virtual {p2}, Lretrofit2/Response;->isSuccessful()Z
 
     move-result v0
 
@@ -103,41 +103,41 @@
 
     if-eqz v0, :cond_1c
 
-    .line 27
+    .line 29
     :cond_13
     new-instance v0, Lretrofit2/HttpException;
 
-    invoke-direct {v0, p2}, Lretrofit2/HttpException;-><init>(Lbl/blh;)V
+    invoke-direct {v0, p2}, Lretrofit2/HttpException;-><init>(Lretrofit2/Response;)V
 
-    invoke-virtual {p0, p1, v0}, Lbl/vn;->onFailure(Lbl/bkx;Ljava/lang/Throwable;)V
+    invoke-virtual {p0, p1, v0}, Lbl/vn;->onFailure(Lretrofit2/Call;Ljava/lang/Throwable;)V
 
     goto :goto_6
 
-    .line 30
+    .line 32
     :cond_1c
-    invoke-virtual {p2}, Lbl/blh;->f()Ljava/lang/Object;
+    invoke-virtual {p2}, Lretrofit2/Response;->body()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/bilibili/okretro/GeneralResponse;
 
-    .line 31
+    .line 33
     if-nez v0, :cond_29
 
-    .line 32
+    .line 34
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lbl/vn;->a(Ljava/lang/Object;)V
 
     goto :goto_6
 
-    .line 33
+    .line 35
     :cond_29
     iget v1, v0, Lcom/bilibili/okretro/GeneralResponse;->code:I
 
     if-eqz v1, :cond_4d
 
-    .line 34
+    .line 36
     invoke-static {}, Lbl/jh;->a()Z
 
     move-result v1
@@ -150,14 +150,14 @@
 
     if-ne v1, v2, :cond_40
 
-    .line 35
+    .line 37
     const-string v1, "BiliApi"
 
     const-string v2, "WTF?! Check your parameters!"
 
     invoke-static {v1, v2}, Ltv/danmaku/android/log/BLog;->e(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 37
+    .line 39
     :cond_40
     new-instance v1, Lcom/bilibili/api/BiliApiException;
 
@@ -167,11 +167,11 @@
 
     invoke-direct {v1, v2, v0}, Lcom/bilibili/api/BiliApiException;-><init>(ILjava/lang/String;)V
 
-    invoke-virtual {p0, p1, v1}, Lbl/vn;->onFailure(Lbl/bkx;Ljava/lang/Throwable;)V
+    invoke-virtual {p0, p1, v1}, Lbl/vn;->onFailure(Lretrofit2/Call;Ljava/lang/Throwable;)V
 
     goto :goto_6
 
-    .line 39
+    .line 41
     :cond_4d
     iget-object v0, v0, Lcom/bilibili/okretro/GeneralResponse;->data:Ljava/lang/Object;
 
@@ -191,10 +191,10 @@
     .end annotation
 
     .prologue
-    .line 16
+    .line 18
     invoke-virtual {p0, p1}, Lbl/vn;->a(Lcom/bilibili/okretro/GeneralResponse;)V
 
-    .line 17
+    .line 19
     return-void
 .end method
 
@@ -202,7 +202,7 @@
     .locals 0
 
     .prologue
-    .line 11
+    .line 13
     check-cast p1, Lcom/bilibili/okretro/GeneralResponse;
 
     invoke-virtual {p0, p1}, Lbl/vn;->onSuccess(Lcom/bilibili/okretro/GeneralResponse;)V

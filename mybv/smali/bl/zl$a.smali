@@ -14,24 +14,24 @@
 .end annotation
 
 .annotation runtime Lretrofit2/http/BaseUrl;
-    a = "http://api.bilibili.com"
+    value = "http://api.bilibili.com"
 .end annotation
 
 
 # virtual methods
-.method public abstract a(Lbl/bhy;)Lbl/vp;
-    .param p1    # Lbl/bhy;
+.method public abstract a(Lokhttp3/RequestBody;)Lbl/vp;
+    .param p1    # Lokhttp3/RequestBody;
         .annotation runtime Lretrofit2/http/Body;
         .end annotation
     .end param
     .annotation runtime Lcom/bilibili/okretro/anno/RequestInterceptor;
-        a = Lbl/vy;
+        value = Lbl/vy;
     .end annotation
 
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
-            "Lbl/bhy;",
+            "Lokhttp3/RequestBody;",
             ")",
             "Lbl/vp<",
             "Ljava/lang/String;",
@@ -40,6 +40,6 @@
     .end annotation
 
     .annotation runtime Lretrofit2/http/POST;
-        a = "/x/report/click/android/tv"
+        value = "/x/report/click/android/tv"
     .end annotation
 .end method

@@ -8,7 +8,7 @@
 
 
 # instance fields
-.field private volatile b:Lbl/bhv$a;
+.field private volatile b:Lokhttp3/OkHttpClient$Builder;
 
 
 # direct methods
@@ -70,22 +70,22 @@
     return-object v0
 .end method
 
-.method public static b()Lbl/bhv$a;
+.method public static b()Lokhttp3/OkHttpClient$Builder;
     .locals 1
 
     .line 41
-    invoke-static {}, Lbl/us;->c()Lbl/bhv;
+    invoke-static {}, Lbl/us;->c()Lokhttp3/OkHttpClient;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lbl/bhv;->z()Lbl/bhv$a;
+    invoke-virtual {v0}, Lokhttp3/OkHttpClient;->newBuilder()Lokhttp3/OkHttpClient$Builder;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method public static c()Lbl/bhv;
+.method public static c()Lokhttp3/OkHttpClient;
     .locals 1
 
     .line 64
@@ -93,18 +93,18 @@
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lbl/us;->d()Lbl/bhv;
+    invoke-virtual {v0}, Lbl/us;->d()Lokhttp3/OkHttpClient;
 
     move-result-object v0
 
     return-object v0
 .end method
 
-.method private e()Lbl/bhv$a;
+.method private e()Lokhttp3/OkHttpClient$Builder;
     .locals 2
 
     .line 48
-    iget-object v0, p0, Lbl/us;->b:Lbl/bhv$a;
+    iget-object v0, p0, Lbl/us;->b:Lokhttp3/OkHttpClient$Builder;
 
     if-nez v0, :cond_1
 
@@ -115,16 +115,16 @@
 
     .line 50
     :try_start_0
-    iget-object v1, p0, Lbl/us;->b:Lbl/bhv$a;
+    iget-object v1, p0, Lbl/us;->b:Lokhttp3/OkHttpClient$Builder;
 
     if-nez v1, :cond_0
 
     .line 51
-    new-instance v1, Lbl/bhv$a;
+    new-instance v1, Lokhttp3/OkHttpClient$Builder;
 
-    invoke-direct {v1}, Lbl/bhv$a;-><init>()V
+    invoke-direct {v1}, Lokhttp3/OkHttpClient$Builder;-><init>()V
 
-    iput-object v1, p0, Lbl/us;->b:Lbl/bhv$a;
+    iput-object v1, p0, Lbl/us;->b:Lokhttp3/OkHttpClient$Builder;
 
     .line 53
     :cond_0
@@ -144,61 +144,61 @@
     .line 55
     :cond_1
     :goto_0
-    iget-object v0, p0, Lbl/us;->b:Lbl/bhv$a;
+    iget-object v0, p0, Lbl/us;->b:Lokhttp3/OkHttpClient$Builder;
 
     return-object v0
 .end method
 
 
 # virtual methods
-.method public a(Lbl/bhl;)Lbl/us;
+.method public a(Lokhttp3/CookieJar;)Lbl/us;
     .locals 1
 
     .line 174
-    invoke-direct {p0}, Lbl/us;->e()Lbl/bhv$a;
+    invoke-direct {p0}, Lbl/us;->e()Lokhttp3/OkHttpClient$Builder;
 
     move-result-object v0
 
-    invoke-virtual {v0, p1}, Lbl/bhv$a;->a(Lbl/bhl;)Lbl/bhv$a;
+    invoke-virtual {v0, p1}, Lokhttp3/OkHttpClient$Builder;->cookieJar(Lokhttp3/CookieJar;)Lokhttp3/OkHttpClient$Builder;
 
     return-object p0
 .end method
 
-.method public a(Lbl/bhm;)Lbl/us;
+.method public a(Lokhttp3/Dispatcher;)Lbl/us;
     .locals 1
 
     .line 130
-    invoke-direct {p0}, Lbl/us;->e()Lbl/bhv$a;
+    invoke-direct {p0}, Lbl/us;->e()Lokhttp3/OkHttpClient$Builder;
 
     move-result-object v0
 
-    invoke-virtual {v0, p1}, Lbl/bhv$a;->a(Lbl/bhm;)Lbl/bhv$a;
+    invoke-virtual {v0, p1}, Lokhttp3/OkHttpClient$Builder;->dispatcher(Lokhttp3/Dispatcher;)Lokhttp3/OkHttpClient$Builder;
 
     return-object p0
 .end method
 
-.method public a(Lbl/bhn;)Lbl/us;
+.method public a(Lokhttp3/Dns;)Lbl/us;
     .locals 1
 
     .line 118
-    invoke-direct {p0}, Lbl/us;->e()Lbl/bhv$a;
+    invoke-direct {p0}, Lbl/us;->e()Lokhttp3/OkHttpClient$Builder;
 
     move-result-object v0
 
-    invoke-virtual {v0, p1}, Lbl/bhv$a;->a(Lbl/bhn;)Lbl/bhv$a;
+    invoke-virtual {v0, p1}, Lokhttp3/OkHttpClient$Builder;->dns(Lokhttp3/Dns;)Lokhttp3/OkHttpClient$Builder;
 
     return-object p0
 .end method
 
-.method public a(Lbl/bhs;)Lbl/us;
+.method public a(Lokhttp3/Interceptor;)Lbl/us;
     .locals 1
 
     .line 90
-    invoke-direct {p0}, Lbl/us;->e()Lbl/bhv$a;
+    invoke-direct {p0}, Lbl/us;->e()Lokhttp3/OkHttpClient$Builder;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lbl/bhv$a;->a()Ljava/util/List;
+    invoke-virtual {v0}, Lokhttp3/OkHttpClient$Builder;->interceptors()Ljava/util/List;
 
     move-result-object v0
 
@@ -209,25 +209,25 @@
     if-nez v0, :cond_0
 
     .line 91
-    invoke-direct {p0}, Lbl/us;->e()Lbl/bhv$a;
+    invoke-direct {p0}, Lbl/us;->e()Lokhttp3/OkHttpClient$Builder;
 
     move-result-object v0
 
-    invoke-virtual {v0, p1}, Lbl/bhv$a;->a(Lbl/bhs;)Lbl/bhv$a;
+    invoke-virtual {v0, p1}, Lokhttp3/OkHttpClient$Builder;->addInterceptor(Lokhttp3/Interceptor;)Lokhttp3/OkHttpClient$Builder;
 
     :cond_0
     return-object p0
 .end method
 
-.method public d()Lbl/bhv;
+.method public d()Lokhttp3/OkHttpClient;
     .locals 1
 
     .line 183
-    invoke-direct {p0}, Lbl/us;->e()Lbl/bhv$a;
+    invoke-direct {p0}, Lbl/us;->e()Lokhttp3/OkHttpClient$Builder;
 
     move-result-object v0
 
-    invoke-virtual {v0}, Lbl/bhv$a;->c()Lbl/bhv;
+    invoke-virtual {v0}, Lokhttp3/OkHttpClient$Builder;->build()Lokhttp3/OkHttpClient;
 
     move-result-object v0
 

@@ -1,9 +1,9 @@
 .class Lbl/vr$b;
 .super Ljava/lang/Object;
-.source "BL"
+.source "vr.java"
 
 # interfaces
-.implements Lbl/bla;
+.implements Lretrofit2/Converter;
 
 
 # annotations
@@ -19,9 +19,10 @@
 .annotation system Ldalvik/annotation/Signature;
     value = {
         "Ljava/lang/Object;",
-        "Lbl/bla<",
-        "Lbl/bia;",
-        "Lbl/bia;",
+        "Lretrofit2/Converter",
+        "<",
+        "Lokhttp3/ResponseBody;",
+        "Lokhttp3/ResponseBody;",
         ">;"
     }
 .end annotation
@@ -35,7 +36,8 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 117
+    .prologue
+    .line 42
     new-instance v0, Lbl/vr$b;
 
     invoke-direct {v0}, Lbl/vr$b;-><init>()V
@@ -48,31 +50,18 @@
 .method constructor <init>()V
     .locals 0
 
-    .line 119
+    .prologue
+    .line 44
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
+    .line 45
     return-void
 .end method
 
 
 # virtual methods
-.method public a(Lbl/bia;)Lbl/bia;
-    .locals 0
-    .param p1    # Lbl/bia;
-        .annotation build Landroid/support/annotation/NonNull;
-        .end annotation
-    .end param
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Ljava/io/IOException;
-        }
-    .end annotation
-
-    return-object p1
-.end method
-
-.method public synthetic convert(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 0
+.method public bridge synthetic convert(Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 1
     .param p1    # Ljava/lang/Object;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -83,12 +72,30 @@
         }
     .end annotation
 
-    .line 116
-    check-cast p1, Lbl/bia;
+    .prologue
+    .line 41
+    check-cast p1, Lokhttp3/ResponseBody;
 
-    invoke-virtual {p0, p1}, Lbl/vr$b;->a(Lbl/bia;)Lbl/bia;
+    invoke-virtual {p0, p1}, Lbl/vr$b;->convert(Lokhttp3/ResponseBody;)Lokhttp3/ResponseBody;
 
-    move-result-object p1
+    move-result-object v0
 
+    return-object v0
+.end method
+
+.method public convert(Lokhttp3/ResponseBody;)Lokhttp3/ResponseBody;
+    .locals 0
+    .param p1    # Lokhttp3/ResponseBody;
+        .annotation build Landroid/support/annotation/NonNull;
+        .end annotation
+    .end param
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .prologue
+    .line 51
     return-object p1
 .end method

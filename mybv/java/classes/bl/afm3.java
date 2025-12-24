@@ -31,7 +31,6 @@ public final class afm3 extends adw implements View.OnFocusChangeListener, View.
     public static final a Companion = new a(null);
     public static List<String> tmp_cdns;
     public static List<String> tmp_splashs;
-    public static String[] tab_names = {"","动态","待看","关注","收藏","历史"};
     public static String prefect_codec = null;
     public static String prefect_decoder = null;
     public List<String> supported_codecs = new ArrayList<>(Arrays.asList("video/avc","video/hevc","video/av01"));
@@ -40,12 +39,12 @@ public final class afm3 extends adw implements View.OnFocusChangeListener, View.
     private DrawFrameLayout cdn_button;
     private DrawFrameLayout splash_button;
     private DrawFrameLayout codec_button;
+    private DrawFrameLayout export_button;
     private DrawEditText filter_path;
     private DrawEditText cdn_value;
     private CheckBox skip_checkbox0;
     private CheckBox skip_checkbox1;
     private CheckBox skip_checkbox2;
-    private DrawFrameLayout[] tab_buttons = {null,null,null,null,null,null};
 
     @Override // bl.adw
     public boolean c() {
@@ -65,16 +64,12 @@ public final class afm3 extends adw implements View.OnFocusChangeListener, View.
         this.cdn_button = (DrawFrameLayout)inflate.findViewById(R.id.cdn_button);
         this.splash_button = (DrawFrameLayout)inflate.findViewById(R.id.splash_button);
         this.codec_button = (DrawFrameLayout)inflate.findViewById(R.id.codec_button);
+        this.export_button = (DrawFrameLayout)inflate.findViewById(R.id.export_button);
         this.filter_path = (DrawEditText)inflate.findViewById(R.id.filter_path);
         this.cdn_value = (DrawEditText)inflate.findViewById(R.id.cdn_value);
         this.skip_checkbox0 = (CheckBox)inflate.findViewById(R.id.skip_checkbox0);
         this.skip_checkbox1 = (CheckBox)inflate.findViewById(R.id.skip_checkbox1);
         this.skip_checkbox2 = (CheckBox)inflate.findViewById(R.id.skip_checkbox2);
-        this.tab_buttons[1] = (DrawFrameLayout)inflate.findViewById(R.id.tab_button1);
-        this.tab_buttons[2] = (DrawFrameLayout)inflate.findViewById(R.id.tab_button2);
-        this.tab_buttons[3] = (DrawFrameLayout)inflate.findViewById(R.id.tab_button3);
-        this.tab_buttons[4] = (DrawFrameLayout)inflate.findViewById(R.id.tab_button4);
-        this.tab_buttons[5] = (DrawFrameLayout)inflate.findViewById(R.id.tab_button5);
 
         this.filter_button.setUpDrawable(R.drawable.shadow_white_rect);
         this.filter_button.setOnFocusChangeListener(this);
@@ -86,6 +81,8 @@ public final class afm3 extends adw implements View.OnFocusChangeListener, View.
         this.splash_button.setOnFocusChangeListener(this);
         this.codec_button.setUpDrawable(R.drawable.shadow_white_rect);
         this.codec_button.setOnFocusChangeListener(this);
+        this.export_button.setUpDrawable(R.drawable.shadow_white_rect);
+        this.export_button.setOnFocusChangeListener(this);
         if(BiliFilter.filter_on){
             ((ShadowTextView)((ViewGroup)this.filter_button).getChildAt(0)).setText("启用视频过滤");
             this.filter_button.setBackgroundResource(R.drawable.shape_rectangle_trans_with_12corner_white_50);
@@ -108,6 +105,7 @@ public final class afm3 extends adw implements View.OnFocusChangeListener, View.
         this.cdn_button.setOnClickListener(this);
         this.splash_button.setOnClickListener(this);
         this.codec_button.setOnClickListener(this);
+        this.export_button.setOnClickListener(this);
         this.filter_path.setOnEditorActionListener(this);
         this.cdn_value.setOnEditorActionListener(this);
         this.skip_checkbox0.setChecked(BiliFilter.skip_categories.contains("intro"));
@@ -116,12 +114,6 @@ public final class afm3 extends adw implements View.OnFocusChangeListener, View.
         this.skip_checkbox0.setOnCheckedChangeListener(this);
         this.skip_checkbox1.setOnCheckedChangeListener(this);
         this.skip_checkbox2.setOnCheckedChangeListener(this);
-        for(int i=1;i<6;i++){
-            this.tab_buttons[i].setUpDrawable(R.drawable.shadow_white_rect);
-            this.tab_buttons[i].setOnFocusChangeListener(this);
-            this.tab_buttons[i].setOnClickListener(this);
-            ((ShadowTextView)this.tab_buttons[i].getChildAt(0)).setText(afm3.tab_names[afc.MyMap[i]]);
-        }
         return inflate;
     }
 
@@ -288,13 +280,21 @@ public final class afm3 extends adw implements View.OnFocusChangeListener, View.
                 }).create();
             dialog.show();
         }
-        for(int i=1;i<6;i++){
-            if(this.tab_buttons[i]==view){
-                int t=afc.MyMap[i];
-                for(int j=i-1;j>=1;j--)afc.MyMap[j+1]=afc.MyMap[j];
-                afc.MyMap[1]=t;
-                abd.set_personal_config(MainApplication.a(),"myarea_map",JSON.toJSON(afc.MyMap));
-                for(int j=1;j<6;j++)((ShadowTextView)this.tab_buttons[j].getChildAt(0)).setText((j==i?"≪ ":"")+afm3.tab_names[afc.MyMap[j]]);
+        if(view == this.export_button){
+            InputStream inputStream = null;
+            OutputStream outputStream = null;
+            try {
+                inputStream = Runtime.getRuntime().exec("logcat -t 10000").getInputStream();
+                outputStream = new FileOutputStream("/sdcard/bilibilitv.log");
+                kz.a(inputStream, outputStream);
+                kz.a(inputStream);
+                kz.a(outputStream);
+                lr.a(afm3.this.getActivity(), "日志导出至：/sdcard/bilibilitv.log");
+            } catch (Exception e) {
+                kz.a(inputStream);
+                kz.a(outputStream);
+                lr.a(afm3.this.getActivity(), "日志导出失败！");
+                e.printStackTrace();
             }
         }
     }
@@ -326,9 +326,6 @@ public final class afm3 extends adw implements View.OnFocusChangeListener, View.
             ((afz)view).setUpEnabled(true);
         } else {
             ((afz)view).setUpEnabled(false);
-        }
-        for(int i=1;i<6;i++){
-            if(this.tab_buttons[i]==view && this.tab_buttons[i].getChildAt(0)!=null)((ShadowTextView)this.tab_buttons[i].getChildAt(0)).setText((z?"≪ ":"")+afm3.tab_names[afc.MyMap[i]]);
         }
     }
 
@@ -364,18 +361,13 @@ public final class afm3 extends adw implements View.OnFocusChangeListener, View.
     }
 
     public final boolean b() {
-        for(int i=1;i<6;i++){
-            if(this.tab_buttons[i] != null && this.tab_buttons[i].hasFocus())return true;
-        }
+        if((this.skip_checkbox1 != null && this.skip_checkbox1.hasFocus()) || (this.skip_checkbox2 != null && this.skip_checkbox2.hasFocus()))return true;
         return false;
     }
 
     public final boolean a() {
-        if (this.filter_button == null || this.filter_button.hasFocus() || this.folder_open_button == null || this.folder_open_button.hasFocus() || this.filter_path == null || this.filter_path.hasFocus() || this.cdn_button == null || this.cdn_button.hasFocus() || this.cdn_value == null || this.cdn_value.hasFocus() || this.skip_checkbox0 == null || this.skip_checkbox0.hasFocus() || this.skip_checkbox1 == null || this.skip_checkbox1.hasFocus() || this.skip_checkbox2 == null || this.skip_checkbox2.hasFocus() || this.splash_button == null || this.splash_button.hasFocus() || this.codec_button == null || this.codec_button.hasFocus()) {
+        if (this.filter_button == null || this.filter_button.hasFocus() || this.folder_open_button == null || this.folder_open_button.hasFocus() || this.filter_path == null || this.filter_path.hasFocus() || this.cdn_button == null || this.cdn_button.hasFocus() || this.cdn_value == null || this.cdn_value.hasFocus() || this.skip_checkbox0 == null || this.skip_checkbox0.hasFocus() || this.skip_checkbox1 == null || this.skip_checkbox1.hasFocus() || this.skip_checkbox2 == null || this.skip_checkbox2.hasFocus() || this.splash_button == null || this.splash_button.hasFocus() || this.codec_button == null || this.codec_button.hasFocus() || this.export_button == null || this.export_button.hasFocus()) {
             return false;
-        }
-        for(int i=1;i<6;i++){
-            if(this.tab_buttons[i] == null || this.tab_buttons[i].hasFocus())return false;
         }
         this.filter_button.requestFocus();
         return true;

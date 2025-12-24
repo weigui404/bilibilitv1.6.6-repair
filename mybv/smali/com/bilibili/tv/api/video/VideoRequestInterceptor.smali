@@ -145,11 +145,11 @@
     return-void
 .end method
 
-.method protected addCommonParamToBody(Lokhttp3/HttpUrl;Lbl/bhy;Lbl/bhx$a;)V
+.method protected addCommonParamToBody(Lokhttp3/HttpUrl;Lokhttp3/RequestBody;Lokhttp3/Request$Builder;)V
     .locals 6
 
     .line 92
-    instance-of v0, p2, Lbl/bhu;
+    instance-of v0, p2, Lokhttp3/MultipartBody;
 
     if-eqz v0, :cond_0
 
@@ -158,11 +158,11 @@
     .line 98
     :cond_0
     :try_start_0
-    instance-of v0, p2, Lbl/bhp;
+    instance-of v0, p2, Lokhttp3/FormBody;
 
     if-nez v0, :cond_1
 
-    invoke-virtual {p2}, Lbl/bhy;->a()J
+    invoke-virtual {p2}, Lokhttp3/RequestBody;->contentLength()J
 
     move-result-wide v0
     :try_end_0
@@ -183,17 +183,17 @@
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     .line 107
-    instance-of v1, p2, Lbl/bhp;
+    instance-of v1, p2, Lokhttp3/FormBody;
 
     const/4 v2, 0x0
 
     if-eqz v1, :cond_2
 
     .line 108
-    check-cast p2, Lbl/bhp;
+    check-cast p2, Lokhttp3/FormBody;
 
     .line 109
-    invoke-virtual {p2}, Lbl/bhp;->b()I
+    invoke-virtual {p2}, Lokhttp3/FormBody;->size()I
 
     move-result v1
 
@@ -203,11 +203,11 @@
     if-ge v3, v1, :cond_2
 
     .line 110
-    invoke-virtual {p2, v3}, Lbl/bhp;->b(I)Ljava/lang/String;
+    invoke-virtual {p2, v3}, Lokhttp3/FormBody;->name(I)Ljava/lang/String;
 
     move-result-object v4
 
-    invoke-virtual {p2, v3}, Lbl/bhp;->d(I)Ljava/lang/String;
+    invoke-virtual {p2, v3}, Lokhttp3/FormBody;->value(I)Ljava/lang/String;
 
     move-result-object v5
 
@@ -219,7 +219,7 @@
 
     .line 115
     :cond_2
-    invoke-virtual {p1}, Lokhttp3/HttpUrl;->n()I
+    invoke-virtual {p1}, Lokhttp3/HttpUrl;->querySize()I
 
     move-result p2
 
@@ -227,12 +227,12 @@
     if-ge v2, p2, :cond_4
 
     .line 116
-    invoke-virtual {p1, v2}, Lokhttp3/HttpUrl;->a(I)Ljava/lang/String;
+    invoke-virtual {p1, v2}, Lokhttp3/HttpUrl;->queryParameterName(I)Ljava/lang/String;
 
     move-result-object v1
 
     .line 117
-    invoke-virtual {p1, v1}, Lokhttp3/HttpUrl;->c(Ljava/lang/String;)Ljava/util/List;
+    invoke-virtual {p1, v1}, Lokhttp3/HttpUrl;->queryParameterValues(Ljava/lang/String;)Ljava/util/List;
 
     move-result-object v3
 
@@ -269,17 +269,17 @@
     invoke-virtual {p0, v0}, Lcom/bilibili/tv/api/video/VideoRequestInterceptor;->addCommonParam(Ljava/util/Map;)V
 
     .line 124
-    invoke-virtual {p1}, Lokhttp3/HttpUrl;->q()Lokhttp3/HttpUrl$Builder;
+    invoke-virtual {p1}, Lokhttp3/HttpUrl;->newBuilder()Lokhttp3/HttpUrl$Builder;
 
     move-result-object p1
 
     const/4 p2, 0x0
 
-    invoke-virtual {p1, p2}, Lokhttp3/HttpUrl$Builder;->e(Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+    invoke-virtual {p1, p2}, Lokhttp3/HttpUrl$Builder;->query(Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
 
     move-result-object p1
 
-    invoke-virtual {p1}, Lokhttp3/HttpUrl$Builder;->c()Lokhttp3/HttpUrl;
+    invoke-virtual {p1}, Lokhttp3/HttpUrl$Builder;->build()Lokhttp3/HttpUrl;
 
     move-result-object p1
 
@@ -291,7 +291,7 @@
     const-string v0, "application/x-www-form-urlencoded; charset=utf-8"
 
     .line 126
-    invoke-static {v0}, Lbl/bht;->a(Ljava/lang/String;)Lbl/bht;
+    invoke-static {v0}, Lokhttp3/MediaType;->parse(Ljava/lang/String;)Lokhttp3/MediaType;
 
     move-result-object v0
 
@@ -300,16 +300,16 @@
 
     move-result-object p2
 
-    invoke-static {v0, p2}, Lbl/bhy;->a(Lbl/bht;Ljava/lang/String;)Lbl/bhy;
+    invoke-static {v0, p2}, Lokhttp3/RequestBody;->create(Lokhttp3/MediaType;Ljava/lang/String;)Lokhttp3/RequestBody;
 
     move-result-object p2
 
     .line 128
-    invoke-virtual {p3, p1}, Lbl/bhx$a;->a(Lokhttp3/HttpUrl;)Lbl/bhx$a;
+    invoke-virtual {p3, p1}, Lokhttp3/Request$Builder;->url(Lokhttp3/HttpUrl;)Lokhttp3/Request$Builder;
 
     move-result-object p1
 
-    invoke-virtual {p1, p2}, Lbl/bhx$a;->a(Lbl/bhy;)Lbl/bhx$a;
+    invoke-virtual {p1, p2}, Lokhttp3/Request$Builder;->post(Lokhttp3/RequestBody;)Lokhttp3/Request$Builder;
 
     return-void
 
@@ -317,7 +317,7 @@
     return-void
 .end method
 
-.method protected addCommonParamToUrl(Lokhttp3/HttpUrl;Lbl/bhx$a;)V
+.method protected addCommonParamToUrl(Lokhttp3/HttpUrl;Lokhttp3/Request$Builder;)V
     .locals 6
 
     .line 132
@@ -326,7 +326,7 @@
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     .line 133
-    invoke-virtual {p1}, Lokhttp3/HttpUrl;->n()I
+    invoke-virtual {p1}, Lokhttp3/HttpUrl;->querySize()I
 
     move-result v1
 
@@ -336,12 +336,12 @@
     if-ge v2, v1, :cond_1
 
     .line 134
-    invoke-virtual {p1, v2}, Lokhttp3/HttpUrl;->a(I)Ljava/lang/String;
+    invoke-virtual {p1, v2}, Lokhttp3/HttpUrl;->queryParameterName(I)Ljava/lang/String;
 
     move-result-object v3
 
     .line 135
-    invoke-virtual {p1, v3}, Lokhttp3/HttpUrl;->c(Ljava/lang/String;)Ljava/util/List;
+    invoke-virtual {p1, v3}, Lokhttp3/HttpUrl;->queryParameterValues(Ljava/lang/String;)Ljava/util/List;
 
     move-result-object v4
 
@@ -383,7 +383,7 @@
     move-result-object v0
 
     .line 142
-    invoke-virtual {p1}, Lokhttp3/HttpUrl;->q()Lokhttp3/HttpUrl$Builder;
+    invoke-virtual {p1}, Lokhttp3/HttpUrl;->newBuilder()Lokhttp3/HttpUrl$Builder;
 
     move-result-object p1
 
@@ -392,22 +392,22 @@
 
     move-result-object v0
 
-    invoke-virtual {p1, v0}, Lokhttp3/HttpUrl$Builder;->f(Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+    invoke-virtual {p1, v0}, Lokhttp3/HttpUrl$Builder;->encodedQuery(Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
 
     move-result-object p1
 
     .line 144
-    invoke-virtual {p1}, Lokhttp3/HttpUrl$Builder;->c()Lokhttp3/HttpUrl;
+    invoke-virtual {p1}, Lokhttp3/HttpUrl$Builder;->build()Lokhttp3/HttpUrl;
 
     move-result-object p1
 
     .line 145
-    invoke-virtual {p2, p1}, Lbl/bhx$a;->a(Lokhttp3/HttpUrl;)Lbl/bhx$a;
+    invoke-virtual {p2, p1}, Lokhttp3/Request$Builder;->url(Lokhttp3/HttpUrl;)Lokhttp3/Request$Builder;
 
     return-void
 .end method
 
-.method protected addHeader(Lbl/bhx$a;)V
+.method protected addHeader(Lokhttp3/Request$Builder;)V
     .locals 2
 
     .line 58
@@ -425,7 +425,7 @@
     const-string v1, "Display-ID"
 
     .line 60
-    invoke-virtual {p1, v1, v0}, Lbl/bhx$a;->a(Ljava/lang/String;Ljava/lang/String;)Lbl/bhx$a;
+    invoke-virtual {p1, v1, v0}, Lokhttp3/Request$Builder;->header(Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Request$Builder;
 
     .line 64
     :cond_0
@@ -443,7 +443,7 @@
     const-string v1, "Buvid"
 
     .line 66
-    invoke-virtual {p1, v1, v0}, Lbl/bhx$a;->a(Ljava/lang/String;Ljava/lang/String;)Lbl/bhx$a;
+    invoke-virtual {p1, v1, v0}, Lokhttp3/Request$Builder;->header(Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Request$Builder;
 
     .line 70
     :cond_1
@@ -461,7 +461,7 @@
     const-string v1, "User-Agent"
 
     .line 72
-    invoke-virtual {p1, v1, v0}, Lbl/bhx$a;->a(Ljava/lang/String;Ljava/lang/String;)Lbl/bhx$a;
+    invoke-virtual {p1, v1, v0}, Lokhttp3/Request$Builder;->header(Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Request$Builder;
 
     .line 76
     :cond_2
@@ -479,27 +479,27 @@
     const-string v1, "Device-ID"
 
     .line 78
-    invoke-virtual {p1, v1, v0}, Lbl/bhx$a;->a(Ljava/lang/String;Ljava/lang/String;)Lbl/bhx$a;
+    invoke-virtual {p1, v1, v0}, Lokhttp3/Request$Builder;->header(Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Request$Builder;
 
     :cond_3
     return-void
 .end method
 
-.method public intercept(Lbl/bhx;)Lbl/bhx;
+.method public intercept(Lokhttp3/Request;)Lokhttp3/Request;
     .locals 3
 
     .line 42
-    invoke-virtual {p1}, Lbl/bhx;->e()Lbl/bhx$a;
+    invoke-virtual {p1}, Lokhttp3/Request;->newBuilder()Lokhttp3/Request$Builder;
 
     move-result-object v0
 
     .line 44
-    invoke-virtual {p0, v0}, Lcom/bilibili/tv/api/video/VideoRequestInterceptor;->addHeader(Lbl/bhx$a;)V
+    invoke-virtual {p0, v0}, Lcom/bilibili/tv/api/video/VideoRequestInterceptor;->addHeader(Lokhttp3/Request$Builder;)V
 
     const-string v1, "GET"
 
     .line 46
-    invoke-virtual {p1}, Lbl/bhx;->b()Ljava/lang/String;
+    invoke-virtual {p1}, Lokhttp3/Request;->method()Ljava/lang/String;
 
     move-result-object v2
 
@@ -510,11 +510,11 @@
     if-eqz v1, :cond_0
 
     .line 47
-    invoke-virtual {p1}, Lbl/bhx;->a()Lokhttp3/HttpUrl;
+    invoke-virtual {p1}, Lokhttp3/Request;->url()Lokhttp3/HttpUrl;
 
     move-result-object p1
 
-    invoke-virtual {p0, p1, v0}, Lcom/bilibili/tv/api/video/VideoRequestInterceptor;->addCommonParamToUrl(Lokhttp3/HttpUrl;Lbl/bhx$a;)V
+    invoke-virtual {p0, p1, v0}, Lcom/bilibili/tv/api/video/VideoRequestInterceptor;->addCommonParamToUrl(Lokhttp3/HttpUrl;Lokhttp3/Request$Builder;)V
 
     goto :goto_0
 
@@ -522,7 +522,7 @@
     const-string v1, "POST"
 
     .line 48
-    invoke-virtual {p1}, Lbl/bhx;->b()Ljava/lang/String;
+    invoke-virtual {p1}, Lokhttp3/Request;->method()Ljava/lang/String;
 
     move-result-object v2
 
@@ -533,20 +533,20 @@
     if-eqz v1, :cond_1
 
     .line 49
-    invoke-virtual {p1}, Lbl/bhx;->a()Lokhttp3/HttpUrl;
+    invoke-virtual {p1}, Lokhttp3/Request;->url()Lokhttp3/HttpUrl;
 
     move-result-object v1
 
-    invoke-virtual {p1}, Lbl/bhx;->d()Lbl/bhy;
+    invoke-virtual {p1}, Lokhttp3/Request;->body()Lokhttp3/RequestBody;
 
     move-result-object p1
 
-    invoke-virtual {p0, v1, p1, v0}, Lcom/bilibili/tv/api/video/VideoRequestInterceptor;->addCommonParamToBody(Lokhttp3/HttpUrl;Lbl/bhy;Lbl/bhx$a;)V
+    invoke-virtual {p0, v1, p1, v0}, Lcom/bilibili/tv/api/video/VideoRequestInterceptor;->addCommonParamToBody(Lokhttp3/HttpUrl;Lokhttp3/RequestBody;Lokhttp3/Request$Builder;)V
 
     .line 52
     :cond_1
     :goto_0
-    invoke-virtual {v0}, Lbl/bhx$a;->b()Lbl/bhx;
+    invoke-virtual {v0}, Lokhttp3/Request$Builder;->build()Lokhttp3/Request;
 
     move-result-object p1
 

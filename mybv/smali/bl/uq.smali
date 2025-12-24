@@ -32,13 +32,13 @@
     .end annotation
 
     .line 45
-    new-instance v0, Lbl/ux;
+    new-instance v0, Lcom/bilibili/lib/okhttp/huc/OkHttpsURLConnection;
 
-    invoke-static {}, Lbl/us;->c()Lbl/bhv;
+    invoke-static {}, Lbl/us;->c()Lokhttp3/OkHttpClient;
 
     move-result-object v1
 
-    invoke-direct {v0, p1, v1}, Lbl/ux;-><init>(Ljava/net/URL;Lbl/bhv;)V
+    invoke-direct {v0, p1, v1}, Lcom/bilibili/lib/okhttp/huc/OkHttpsURLConnection;-><init>(Ljava/net/URL;Lokhttp3/OkHttpClient;)V
 
     return-object v0
 .end method
@@ -52,22 +52,22 @@
     .end annotation
 
     .line 50
-    invoke-static {}, Lbl/us;->b()Lbl/bhv$a;
+    invoke-static {}, Lbl/us;->b()Lokhttp3/OkHttpClient$Builder;
 
     move-result-object v0
 
-    invoke-virtual {v0, p2}, Lbl/bhv$a;->a(Ljava/net/Proxy;)Lbl/bhv$a;
+    invoke-virtual {v0, p2}, Lokhttp3/OkHttpClient$Builder;->proxy(Ljava/net/Proxy;)Lokhttp3/OkHttpClient$Builder;
 
     move-result-object p2
 
-    invoke-virtual {p2}, Lbl/bhv$a;->c()Lbl/bhv;
+    invoke-virtual {p2}, Lokhttp3/OkHttpClient$Builder;->build()Lokhttp3/OkHttpClient;
 
     move-result-object p2
 
     .line 51
-    new-instance v0, Lbl/ux;
+    new-instance v0, Lcom/bilibili/lib/okhttp/huc/OkHttpsURLConnection;
 
-    invoke-direct {v0, p1, p2}, Lbl/ux;-><init>(Ljava/net/URL;Lbl/bhv;)V
+    invoke-direct {v0, p1, p2}, Lcom/bilibili/lib/okhttp/huc/OkHttpsURLConnection;-><init>(Ljava/net/URL;Lokhttp3/OkHttpClient;)V
 
     return-object v0
 .end method

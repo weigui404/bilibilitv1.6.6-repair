@@ -1,5 +1,5 @@
 .class final Lbl/vp$b;
-.super Lbl/bia;
+.super Lokhttp3/ResponseBody;
 .source "BL"
 
 
@@ -15,20 +15,20 @@
 
 
 # instance fields
-.field private final a:Lbl/bht;
+.field private final a:Lokhttp3/MediaType;
 
 .field private final b:J
 
 
 # direct methods
-.method constructor <init>(Lbl/bht;J)V
+.method constructor <init>(Lokhttp3/MediaType;J)V
     .locals 0
 
     .line 548
-    invoke-direct {p0}, Lbl/bia;-><init>()V
+    invoke-direct {p0}, Lokhttp3/ResponseBody;-><init>()V
 
     .line 549
-    iput-object p1, p0, Lbl/vp$b;->a:Lbl/bht;
+    iput-object p1, p0, Lbl/vp$b;->a:Lokhttp3/MediaType;
 
     .line 550
     iput-wide p2, p0, Lbl/vp$b;->b:J
@@ -38,16 +38,16 @@
 
 
 # virtual methods
-.method public a()Lbl/bht;
+.method public contentType()Lokhttp3/MediaType;
     .locals 1
 
     .line 555
-    iget-object v0, p0, Lbl/vp$b;->a:Lbl/bht;
+    iget-object v0, p0, Lbl/vp$b;->a:Lokhttp3/MediaType;
 
     return-object v0
 .end method
 
-.method public b()J
+.method public contentLength()J
     .locals 2
 
     .line 560
@@ -56,7 +56,7 @@
     return-wide v0
 .end method
 
-.method public c()Lbl/bkg;
+.method public source()Lokio/BufferedSource;
     .locals 2
 
     .line 565

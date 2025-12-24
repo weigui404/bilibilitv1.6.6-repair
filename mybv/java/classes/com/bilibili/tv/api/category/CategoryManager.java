@@ -7,7 +7,6 @@ import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.SparseIntArray;
 import bl.adl;
-import bl.bia;
 import bl.kz;
 import bl.lj;
 import bl.vm;
@@ -28,6 +27,8 @@ import java.util.Collections;
 import java.util.List;
 import tv.danmaku.android.log.BLog;
 import tv.danmaku.ijk.media.player.IjkMediaMeta;
+
+import okhttp3.ResponseBody;
 
 /* compiled from: BL */
 /* loaded from: classes.dex */
@@ -75,6 +76,7 @@ public final class CategoryManager {
     public static final int T2_GAME_CENTER = 65540;
     public static final int T2_RANKING = 65638;
     public static final int T2_SEARCH = 65637;
+    public static final int T2_ELSE = 65639;
     public static final int T_ROOT = 0;
     private static String sApiVersion;
     private static final Object sFileLock;
@@ -107,6 +109,7 @@ public final class CategoryManager {
         sIconsArray.append(T1_ANIMAL, R.drawable.ic_pets_180);
         sIconsArray.append(T1_CAR, R.drawable.ic_directions_car_180);
         sIconsArray.append(T1_SPORTS, R.drawable.ic_sports_soccer_180);
+        sIconsArray.append(T2_ELSE, R.drawable.ic_more_horiz_180);
 
         sFileLock = new Object();
     }
@@ -311,8 +314,8 @@ public final class CategoryManager {
 
         @Override // bl.bla
         @WorkerThread
-        public CategoryMeta convert(bia biaVar) throws IOException {
-            String f = biaVar.f();
+        public CategoryMeta convert(ResponseBody responseBody) throws IOException {
+            String f = responseBody.string();
             JSONObject parseObject = JSON.parseObject(f);
             if (parseObject.getIntValue("code") == 0) {
                 saveToFile(f);

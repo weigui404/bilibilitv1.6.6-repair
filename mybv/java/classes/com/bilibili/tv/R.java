@@ -2080,6 +2080,7 @@ public final class R {
         public static final int ic_toview_180 = 0x7f070105;
         public static final int background_splash = 0x7f070106;
         public static final int ic_folder_open_180 = 0x7f070107;
+        public static final int ic_more_horiz_180 = 0x7f070108;
     }
 
     public static final class id {
@@ -2472,6 +2473,8 @@ public final class R {
         public static final int tab_button4 = 0x7f080181;
         public static final int tab_button5 = 0x7f080182;
         public static final int codec_button = 0x7f080183;
+        public static final int auto_update_checkbox = 0x7f080184;
+        public static final int export_button = 0x7f080185;
     }
 
     public static final class integer {
@@ -3016,6 +3019,12 @@ public final class R {
         public static final int personal_recommend = 0x7f0c0179;
         public static final int my_follow = 0x7f0c017a;
         public static final int my_toview = 0x7f0c017b;
+        public static final int pgc = 0x7f0c017c;
+        public static final int pgc_main_follow = 0x7f0c017d;
+        public static final int pgc_time = 0x7f0c017e;
+        public static final int area_movie = 0x7f0c017f;
+        public static final int area_tv = 0x7f0c0180;
+        public static final int area_doc = 0x7f0c0181;
     }
 
     public static final class style {
