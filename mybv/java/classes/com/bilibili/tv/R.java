@@ -2475,6 +2475,12 @@ public final class R {
         public static final int codec_button = 0x7f080183;
         public static final int auto_update_checkbox = 0x7f080184;
         public static final int export_button = 0x7f080185;
+        public static final int view_radiobutton0 = 0x7f080186;
+        public static final int view_radiobutton1 = 0x7f080187;
+        public static final int view_radiobutton2 = 0x7f080188;
+        public static final int view_radiogroup = 0x7f080189;
+        public static final int thumbnail_button = 0x7f08018a;
+        public static final int video_argue_msg = 0x7f08018b;
     }
 
     public static final class integer {

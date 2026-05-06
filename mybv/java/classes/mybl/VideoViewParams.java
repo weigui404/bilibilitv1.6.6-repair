@@ -7,8 +7,9 @@ import android.net.Uri;
 
 import tv.danmaku.ijk.media.player.IjkMediaMeta;
 
-import bl.afm3;
+import bl.afo;
 import org.json.*;
+import java.net.*;
 
 public class VideoViewParams {
     public static List<String> cdn_history = new ArrayList<String>();
@@ -29,7 +30,20 @@ public class VideoViewParams {
             info=s.split("\\?")[0].split("/");
             if(info[info.length-1].equals(name))url=s;
         }
+        //String hostname=Uri.parse(url).getHost();
+        //if(VideoViewParams.prefect_cdn!=null&&!VideoViewParams.prefect_cdn.isEmpty())hostname=VideoViewParams.prefect_cdn;
         if(VideoViewParams.prefect_cdn!=null&&!VideoViewParams.prefect_cdn.isEmpty())url = Uri.parse(url).buildUpon().authority(VideoViewParams.prefect_cdn).build().toString();
+        //try{
+        //    InetAddress[] addresses = InetAddress.getAllByName(hostname);
+        //    for(InetAddress addr: addresses){
+        //        if(addr instanceof Inet4Address){
+        //            url = Uri.parse(url).buildUpon().authority(addr.getHostAddress()).build().toString();
+        //            break;
+        //        }
+        //    }
+        //}catch(Exception e){
+        //    e.printStackTrace();
+        //}
         return url;
     }
 
@@ -40,8 +54,8 @@ public class VideoViewParams {
         if(dash.optJSONObject("flac")!=null&&dash.optJSONObject("flac").optJSONObject("audio")!=null)audios.put(dash.optJSONObject("flac").optJSONObject("audio"));
         bundle.putBundle(IjkMediaMeta.IJKM_DASH_KEY_AUDIO, filterData(-1, false, audios));
         //bundle.putBundle(IjkMediaMeta.IJKM_DASH_KEY_VIDEO_264, filterData(7, true, dash.optJSONArray("video")));
-        if("video/hevc".equals(afm3.prefect_codec))bundle.putBundle(IjkMediaMeta.IJKM_DASH_KEY_VIDEO_264, filterData(12, true, dash.optJSONArray("video")));
-        else if("video/av01".equals(afm3.prefect_codec))bundle.putBundle(IjkMediaMeta.IJKM_DASH_KEY_VIDEO_264, filterData(13, true, dash.optJSONArray("video")));
+        if("video/hevc".equals(afo.prefect_codec))bundle.putBundle(IjkMediaMeta.IJKM_DASH_KEY_VIDEO_264, filterData(12, true, dash.optJSONArray("video")));
+        else if("video/av01".equals(afo.prefect_codec))bundle.putBundle(IjkMediaMeta.IJKM_DASH_KEY_VIDEO_264, filterData(13, true, dash.optJSONArray("video")));
         else bundle.putBundle(IjkMediaMeta.IJKM_DASH_KEY_VIDEO_264, filterData(7, true, dash.optJSONArray("video")));
         //bundle.putBundle(IjkMediaMeta.IJKM_DASH_KEY_VIDEO_265, filterData(12, false, dash.optJSONArray("video")));
         return bundle;

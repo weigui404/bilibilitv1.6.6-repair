@@ -59,6 +59,11 @@ public class MainApplication extends Application {
     public static JSONArray blacklist_uids=null;
     public static JSONArray graylist_uids=null;
 
+    static {
+        System.setProperty("java.net.preferIPv6Addresses", "false");
+        System.setProperty("java.net.preferIPv4Stack", "true");
+    }
+
     public static MainApplication a() {
         return b;
     }
@@ -110,10 +115,12 @@ public class MainApplication extends Application {
         BiliFilter.filter_on=config.getBooleanValue("filter_on");
         BiliFilter.progressbar_on=config.getBooleanValue("progressbar_on");
         BiliFilter.fastquit_on=config.getBooleanValue("fastquit_on");
+        BiliFilter.thumbnail_off=config.getBooleanValue("thumbnail_off");
+        if(config.containsKey("prefer_videoview"))BiliFilter.prefer_videoview=config.getIntValue("prefer_videoview");
         mybl.VideoViewParams.prefect_cdn=config.getString("prefect_cdn");
-        bl.afm3.prefect_codec=config.getString("prefect_codec");
-        bl.afm3.prefect_decoder=config.getString("prefect_decoder");
-        if(bl.afm3.prefect_decoder!=null)IjkMediaCodecInfo.getKnownCodecList().put(bl.afm3.prefect_decoder, IjkMediaCodecInfo.RANK_MAX);
+        bl.afo.prefect_codec=config.getString("prefect_codec");
+        bl.afo.prefect_decoder=config.getString("prefect_decoder");
+        if(bl.afo.prefect_decoder!=null)IjkMediaCodecInfo.getKnownCodecList().put(bl.afo.prefect_decoder, IjkMediaCodecInfo.RANK_MAX);
         bl.afq.auto_update=config.getBooleanValue("auto_update");
         try{BiliFilter.updateConfig();}catch(Exception e){e.printStackTrace();}
         JSONArray myarea_map=config.getJSONArray("myarea_map");
@@ -142,8 +149,6 @@ public class MainApplication extends Application {
             kz.a(inputStream);
             e.printStackTrace();
         }
-        System.setProperty("java.net.preferIPv6Addresses", "false");
-        System.setProperty("java.net.preferIPv4Stack", "true");
     }
 
     @Override // android.app.Application, android.content.ComponentCallbacks

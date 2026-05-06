@@ -69,7 +69,7 @@ public class VideoApiParser2 implements vu<GeneralResponse<BiliVideoDetail>> {
                     }
                 }
                 r1.mTags = JSON.parseArray(tags.toString(), BiliVideoDetail.Tag.class);
-                r1.mRelatedList = JSON.parseArray(tags.toString(), BiliVideoDetail.class);
+                r1.mRelatedList = JSON.parseArray(related.toString(), BiliVideoDetail.class);
                 generalResponse.data = r1;
             }
             jSONObject.clear();
