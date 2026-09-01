@@ -408,7 +408,7 @@
 .end method
 
 .method private F()V
-    .locals 3
+    .locals 1
 
     .prologue
     .line 269
@@ -422,54 +422,14 @@
 
     move-result v0
 
-    if-eqz v0, :cond_20
-
-    .line 272
-    :cond_c
-    :try_start_c
-    iget-object v0, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->x:Landroid/view/TextureView;
-
-    iget-object v1, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->x:Landroid/view/TextureView;
-
-    invoke-virtual {v1}, Landroid/view/TextureView;->getWidth()I
-
-    move-result v1
-
-    iget-object v2, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->x:Landroid/view/TextureView;
-
-    invoke-virtual {v2}, Landroid/view/TextureView;->getHeight()I
-
-    move-result v2
-
-    invoke-virtual {v0, v1, v2}, Landroid/view/TextureView;->getBitmap(II)Landroid/graphics/Bitmap;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->z:Landroid/graphics/Bitmap;
-    :try_end_20
-    .catch Ljava/lang/Exception; {:try_start_c .. :try_end_20} :catch_24
+    if-eqz v0, :cond_c
 
     .line 278
-    :cond_20
-    :goto_20
+    :cond_c
     invoke-virtual {p0}, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->q()V
 
     .line 279
     return-void
-
-    .line 273
-    :catch_24
-    move-exception v0
-
-    .line 274
-    invoke-static {v0}, Lbl/att;->a(Ljava/lang/Throwable;)V
-
-    .line 275
-    const/4 v0, 0x0
-
-    iput-object v0, p0, Lcom/bilibili/tv/newplayer/video/LiveVideoPlayer;->z:Landroid/graphics/Bitmap;
-
-    goto :goto_20
 .end method
 
 .method private H()V

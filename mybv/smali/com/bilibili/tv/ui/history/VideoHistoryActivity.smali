@@ -782,29 +782,21 @@
 
     move-result-object v1
 
-    const v2, 0x7f0c0079
-
-    invoke-virtual {p0, v2}, Lcom/bilibili/tv/ui/history/VideoHistoryActivity;->getString(I)Ljava/lang/String;
-
-    move-result-object v2
+    const-string v2, "\u786e\u5b9a"
 
     new-instance v3, Lcom/bilibili/tv/ui/history/VideoHistoryActivity$i;
 
     invoke-direct {v3, p0}, Lcom/bilibili/tv/ui/history/VideoHistoryActivity$i;-><init>(Lcom/bilibili/tv/ui/history/VideoHistoryActivity;)V
 
-    invoke-virtual {v1, v2, v3}, Lbl/agb$a;->b(Ljava/lang/String;Lbl/agb$b;)Lbl/agb$a;
+    invoke-virtual {v1, v2, v3}, Lbl/agb$a;->a(Ljava/lang/String;Lbl/agb$b;)Lbl/agb$a;
 
     move-result-object v1
 
-    const v2, 0x7f0c0076
-
-    invoke-virtual {p0, v2}, Lcom/bilibili/tv/ui/history/VideoHistoryActivity;->getString(I)Ljava/lang/String;
-
-    move-result-object v2
+    const-string v2, "\u624b\u6ed1\u4e86"
 
     sget-object v3, Lcom/bilibili/tv/ui/history/VideoHistoryActivity$j;->a:Lcom/bilibili/tv/ui/history/VideoHistoryActivity$j;
 
-    invoke-virtual {v1, v2, v3}, Lbl/agb$a;->a(Ljava/lang/String;Lbl/agb$b;)Lbl/agb$a;
+    invoke-virtual {v1, v2, v3}, Lbl/agb$a;->b(Ljava/lang/String;Lbl/agb$b;)Lbl/agb$a;
 
     .line 247
     invoke-virtual {v0}, Lbl/agb$a;->a()Lbl/agb;

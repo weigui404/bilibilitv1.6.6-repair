@@ -100,6 +100,7 @@ public class MediaPlayerContext implements AudioManager.OnAudioFocusChangeListen
     }
 
     public void adjustScreen(int type) {
+        if(!(this.mVideoView.getView() instanceof android.view.TextureView))return;
         if(type==1)this.reflection_type=-this.reflection_type;
         if(type==0)this.rotation_type=(this.rotation_type-1)%4;
         BaseVideoView baseVideoView = (BaseVideoView) this.mVideoView;

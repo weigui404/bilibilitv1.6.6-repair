@@ -237,7 +237,7 @@ public final class VideoToviewActivity extends BaseUpViewActivity implements Vie
     public boolean onLongClick(View v) {
         bbi.b(v, "v");
         agb.a aVar = new agb.a(this);
-        aVar.a(1).a("确认删除已观看视频？").b(getString(R.string.confirm), new ClearConfirmButton()).a(getString(R.string.cancel), CancelButton.a);
+        aVar.a(1).a("确认删除已观看视频？").a("确定", new ClearConfirmButton()).b("手滑了", CancelButton.a);
         aVar.a().show();
         return true;
     }

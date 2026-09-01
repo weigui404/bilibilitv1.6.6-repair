@@ -243,7 +243,7 @@ public final class VideoHistoryActivity extends BaseUpViewActivity implements Vi
     public boolean onLongClick(View view) {
         bbi.b(view, "v");
         agb.a aVar = new agb.a(this);
-        aVar.a(1).a(getString(R.string.is_really_confirmed_to_clear_video_history)).b(getString(R.string.confirm), new i()).a(getString(R.string.cancel), j.a);
+        aVar.a(1).a(getString(R.string.is_really_confirmed_to_clear_video_history)).a("确定", new i()).b("手滑了", j.a);
         aVar.a().show();
         return true;
     }

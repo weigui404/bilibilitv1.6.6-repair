@@ -6,10 +6,7 @@ import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.view.Surface;
-import android.view.TextureView;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.bilibili.tv.R;
@@ -22,7 +19,7 @@ import tv.danmaku.videoplayer.core.videoview.GLVideoView;
 
 /* compiled from: BL */
 /* loaded from: classes.dex */
-public abstract class wy extends wx implements TextureView.SurfaceTextureListener {
+public abstract class wy extends wx implements TextureView.SurfaceTextureListener, SurfaceHolder.Callback {
     protected static int H = -1;
     protected static boolean I = false;
     public static boolean J = true;
@@ -270,8 +267,10 @@ public abstract class wy extends wx implements TextureView.SurfaceTextureListene
         }
         this.x = null;
         if(mybl.BiliFilter.prefer_videoview==3)this.x = new wz3(getContext());
-        else this.x = new wz(getContext());
-        this.x.setSurfaceTextureListener(this);
+        else if(mybl.BiliFilter.prefer_videoview==2)this.x = new wz2(getContext());
+        else this.x = new wz1(getContext());
+        if(mybl.BiliFilter.prefer_videoview>1)((TextureView)this.x).setSurfaceTextureListener(this);
+        else ((SurfaceView)this.x).getHolder().addCallback(this);
         this.x.setRotation(this.h);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, -1);
         layoutParams.gravity = 17;
@@ -321,6 +320,26 @@ public abstract class wy extends wx implements TextureView.SurfaceTextureListene
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         r();
     }
+
+
+    @Override // android.view.SurfaceHolder.Callback
+    public void surfaceCreated(SurfaceHolder surfaceHolder) {
+        this.K = surfaceHolder.getSurface();
+        wm.a().a(this.K);
+        q();
+    }
+
+    @Override // android.view.SurfaceHolder.Callback
+    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        wm.a().a((Surface) null);
+        v();
+    }
+
+    @Override // android.view.SurfaceHolder.Callback
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i2, int i3) {
+        r();
+    }
+
 
     protected void q() {
         try {
