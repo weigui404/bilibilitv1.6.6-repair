@@ -235,7 +235,7 @@ public class abd {
     public static Set<String> get_skip_categories(Context context) {
         HashSet<String> h = new HashSet<String>();
         try{
-            JSONArray ja = JSON.parseArray(a(context).a().getString("skip_categories", ""));
+            JSONArray ja = JSON.parseArray(a(context).a().getString("skip_categories", "[]"));
             for(int i=0;i<ja.size();i++)h.add(ja.getString(i));
         }
         catch(Exception e){
@@ -256,9 +256,11 @@ public class abd {
 
     public static JSONObject get_personal_config(Context context) {
         JSONObject config = null;
-        String default_config = "{\"filter_on\":false,\"progressbar_on\":false,\"fastquit_on\":false,\"auto_update\":false}";
+        String default_config = "{\"filter_on\":false, \"progressbar_on\":false, \"fastquit_on\":false, \"auto_update\":false, \"auto_play\":true, \"thumbnail_quality\":0, \"prefer_videoview\":1}";
         try{
-            config = JSON.parseObject(a(context).a().getString("personal_config", default_config));
+            config = JSON.parseObject(default_config);
+            config.putAll(JSON.parseObject(a(context).a().getString("personal_config", "{}")));
+            //config = JSON.parseObject(a(context).a().getString("personal_config", default_config));
         }
         catch(Exception e){
             e.printStackTrace();
